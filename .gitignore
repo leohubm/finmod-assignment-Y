@@ -8,3 +8,18 @@ venv/
 .streamlit/secrets.toml
 # course material, not part of the submission
 assignment_guidelines.md
+materials/
+
+# IDE
+.idea/
+.vscode/
+
+# data is fetched through the API, never committed
+*.csv
+*.parquet
+*.xlsx
+data/
+
+# test / tool caches
+.pytest_cache/
+.ruff_cache/
