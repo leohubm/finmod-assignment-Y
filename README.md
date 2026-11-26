@@ -41,8 +41,8 @@ requirements.txt       dependencies of the app
 
 ## Links
 
-- Streamlit app: _to be added_
+- Streamlit app: https://finmod-assignment-y-novasbe.streamlit.app/
 
 ## Group
 
-Moodle group name and members: _to be added_
+Moodle group Y
