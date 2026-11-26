@@ -328,9 +328,9 @@ def plot_growth(rets):
     fig = go.Figure()
     for column in wealth:
         fig.add_scatter(x=wealth.index, y=wealth[column], name=column, line=LINES[column],
-                        hovertemplate="%{y:.2f}")
+                        hovertemplate="$%{y:.2f}")
     ticks = [t for t in (0.5, 1, 2, 3, 5, 10, 20, 30, 50, 100) if wealth.min().min() * 0.9 <= t <= wealth.max().max() * 1.1]
-    fig.update_yaxes(type="log", tickvals=ticks, ticktext=[f"{t:g}" for t in ticks], title="Value of 1 invested")
+    fig.update_yaxes(type="log", tickvals=ticks, ticktext=[f"${t:g}" for t in ticks], title="Value of $1 invested")
     return style_figure(fig)
 
 
@@ -505,11 +505,11 @@ names = {NET: "the strategy", BENCHMARK: "SPY", EW: "equal-weight sectors"}
 
 with tab_perf:
     with st.container(key="card_growth"):
-        st.markdown("### Growth of 1")
+        st.markdown("### Growth of \\$1")
         st.plotly_chart(plot_growth(monthly[chart_columns]), width="stretch", config={"displayModeBar": False})
         final = wealth_index(monthly[chart_columns]).iloc[-1]
-        grew = [f"<b>{final[c]:.1f}</b> in {names[c]}" for c in chart_columns]
-        st.markdown(f'<p class="caption">1 invested in {monthly.index[0]:%B %Y} grew to {", ".join(grew[:-1])} and {grew[-1]}.</p>',
+        grew = [f"<b>&#36;{final[c]:.2f}</b> in {names[c]}" for c in chart_columns]
+        st.markdown(f'<p class="caption">&#36;1 invested in {monthly.index[0]:%B %Y} grew to {", ".join(grew[:-1])} and {grew[-1]}.</p>',
                     unsafe_allow_html=True)
     st.write("")
     with st.container(key="card_drawdown"):
@@ -593,7 +593,7 @@ with tab_sat:
                         config={"displayModeBar": False})
         final = wealth_index(blend).iloc[-1]
         st.markdown(f'<p class="caption">Above 1, the portfolio is ahead of SPY alone since {monthly.index[0]:%B %Y}. '
-                    f"1 invested grew to <b>{final.iloc[1]:.2f}</b> in the blend and <b>{final.iloc[0]:.2f}</b> in SPY alone.</p>",
+                    f"&#36;1 invested grew to <b>&#36;{final.iloc[1]:.2f}</b> in the blend and <b>&#36;{final.iloc[0]:.2f}</b> in SPY alone.</p>",
                     unsafe_allow_html=True)
 
 st.markdown(
